@@ -1,11 +1,11 @@
 <?php
 
-function	get_connect($host, $login, $passwd, $base)
+function	get_connect($base)
 {
-	$db = mysqli_connect($host, $login, $passwd, $base);
+	$db = mysqli_connect('db', 'root', 'root', $base);
 	if (!$db)
 	{
-		echo 'Erreur de connection à la base de données\n';
+		echo mysqli_error($db);
 		return (NULL);
 	}
 	return $db;
