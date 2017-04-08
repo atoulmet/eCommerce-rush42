@@ -11,6 +11,6 @@
 		<link rel="stylesheet" type="text/css" href="#" />
 	</head>
 	<body>
-		<a href="./create.php">Inscription</a>
+		<a href="sign_up.php">Inscription</a>
 	</body>
 </html>
