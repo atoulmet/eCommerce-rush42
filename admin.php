@@ -1,22 +1,27 @@
 <?php
-	session_start();
-	include('check_admin.php');
-	if (check_admin($_SESSION['loggued_on_user']) === false)
-	{
-		echo "Statut administrateur requis\n";
-	}
-	else
-	{
-		echo "OKOK";
-		$_SESSION['admin'] = 'true';
-		}
+
+if (session_start() === false)
+{
+	echo "Erreur inattendue\n";
+	exit ;
+}
+include('check_admin.php');
+if (check_admin($_SESSION['loggued_on_user']) === false)
+{
+	echo "Statut administrateur requis\n";
+	exit;
+}
+else
+	$_SESSION['admin'] = 'true';
+
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title></title>
+		<title>Panneau Admin</title>
 	</head>
+
 	<body>
 
 	</body>

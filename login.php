@@ -1,16 +1,24 @@
 <?PHP
-session_start();
+
+if (session_start() === false)
+{
+	echo "Erreur inattendue\n";
+	exit ;
+}
 $pw_path = "../private/passwd";
+
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>Inscription</title>
+        <title>Connection</title>
     </head>
+
     <body>
         <p>Veuillez vous connecter :</p>
+
         <form action="login.php" method="post">
             <label for="login">Identifiant : </label>
 
@@ -23,26 +31,27 @@ $pw_path = "../private/passwd";
             <input type="submit" name="submit" value="OK" />
         </form>
         <br />
+		
         <a href="./index.php">Retourner à l'accueil</a>
     </body>
 </html>
 
 <?php
+
 include("auth.php");
 include("check_admin.php");
+
 if (!$_POST['login'] || !$_POST['passwd'] || $_POST['submit'] !== "OK")
 	    return ;
 else if ($_POST['login'] && $_POST['passwd'] && $_POST['submit'] === "OK")
 {
 	$passwd = $_POST['passwd'];
-	if (auth($_POST['login'], $passwd) === true)
+	if (auth($_POST['login'], $passwd) === TRUE)
 	{
 		$_SESSION['loggued_on_user'] = $_POST['login'];
 		echo "Logged in";
 		if (check_admin($_POST['login']))
 			$_SESSION['admin'] = 'true';
-			
-		exit ;
 	}
 	else
 	{
@@ -51,4 +60,5 @@ else if ($_POST['login'] && $_POST['passwd'] && $_POST['submit'] === "OK")
 		exit ;
 	}
 }
+
 ?>

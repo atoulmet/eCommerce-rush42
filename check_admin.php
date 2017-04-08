@@ -1,4 +1,5 @@
 <?php
+
 function check_admin($login)
 {
 	$pw_path = '../private/passwd';
@@ -9,4 +10,5 @@ function check_admin($login)
 			return (true);
 	return (false);
 }
+
 ?>

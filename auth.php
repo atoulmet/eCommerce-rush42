@@ -1,4 +1,5 @@
 <?php
+
 function auth($login, $passwd)
 {
 	$pw_path = "../private/passwd";
@@ -13,4 +14,5 @@ function auth($login, $passwd)
 	}
 	return (false);
 }
+
 ?>
