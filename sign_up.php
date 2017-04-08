@@ -19,7 +19,7 @@
 			<br />
 
 			<label for="admin">Compte administrateur : </label>
-			<input type="checkbox" name="admin" id="admin_check" value="admin" />
+			<input type="checkbox" name="admin" id="admin_check" value="true" />
 		</form>
 		<br />
 		<a href="./index.php">Retourner à l'accueil</a>

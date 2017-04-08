@@ -29,6 +29,7 @@ $pw_path = "../private/passwd";
 
 <?php
 include("auth.php");
+include("check_admin.php");
 if (!$_POST['login'] || !$_POST['passwd'] || $_POST['submit'] !== "OK")
 	    return ;
 else if ($_POST['login'] && $_POST['passwd'] && $_POST['submit'] === "OK")
@@ -38,6 +39,9 @@ else if ($_POST['login'] && $_POST['passwd'] && $_POST['submit'] === "OK")
 	{
 		$_SESSION['loggued_on_user'] = $_POST['login'];
 		echo "Logged in";
+		if (check_admin($_POST['login']))
+			$_SESSION['admin'] = 'true';
+			
 		exit ;
 	}
 	else
