@@ -16,6 +16,10 @@
 			<input type="password" name="passwd" id="passwd" placeholder="password" value="" />
 
 			<input type="submit" name="submit" value="OK" />
+			<br />
+
+			<label for="admin">Compte administrateur : </label>
+			<input type="checkbox" name="admin" id="admin_check" value="admin" />
 		</form>
 		<br />
 		<a href="./index.php">Retourner à l'accueil</a>

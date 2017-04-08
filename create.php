@@ -24,7 +24,7 @@ else if ($_POST['login'] && $_POST['passwd'] && $_POST['submit'] === "OK")
 	else
 		if (!file_exists('../private'))
 			mkdir('../private');
-	$priv_file[] = ['login' => $_POST['login'], 'passwd' => $passwd];
+	$priv_file[] = ['login' => $_POST['login'], 'passwd' => $passwd, 'admin' => $_POST['admin']];
 	if (file_put_contents($private, serialize($priv_file)) === FALSE)
 	{
 		echo "Unexpected error.\n";
