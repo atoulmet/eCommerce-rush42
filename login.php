@@ -37,9 +37,9 @@ if (session_start() === false)
 
 <?php
 
-include("get_connect.php");
-include("auth.php");
-include("check_admin.php");
+include_once("get_connect.php");
+include_once("auth.php");
+include_once("check_admin.php");
 
 if (!$_POST['login'] || !$_POST['passwd'] || $_POST['submit'] !== "OK")
 	    return ;

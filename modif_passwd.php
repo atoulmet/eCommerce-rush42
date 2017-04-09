@@ -35,7 +35,7 @@ if (session_start() === false)
 </html>
 <?php
 
-include("get_connect.php");
+include_once("get_connect.php");
 
 $i = 0;
 
@@ -54,8 +54,6 @@ if ($_POST['submit'] == 'OK')
 	else
 	{
 		$db = get_connect("private");
-		if (!$db)
-			exit(mysqli_error($db));
 		if (($req_pre = mysqli_prepare($db, 'SELECT * FROM users WHERE login = ?')) === FALSE)
 		{
 			mysqli_close($db);
@@ -74,8 +72,6 @@ if ($_POST['submit'] == 'OK')
 		}
 		mysqli_close($db);
 		$db = get_connect("private");
-		if (!$db)
-			exit(mysqli_error($db));
 		$new_pw_hash = hash('whirlpool', $_POST['newpw']);
 		if (($req_updt = mysqli_prepare($db, 'UPDATE users SET passwd = ? WHERE login = ?')) === FALSE)
 		{

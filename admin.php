@@ -6,8 +6,8 @@ if (session_start() === false)
 	exit ;
 }
 
-include("get_connect.php");
-include('check_admin.php');
+include_once("get_connect.php");
+include_once('check_admin.php');
 
 if (check_admin($_SESSION['loggued_on_user']) === false)
 {

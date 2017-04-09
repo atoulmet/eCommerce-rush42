@@ -1,7 +1,7 @@
 <?php
 
 header('Location: index.php');
-include("get_connect.php");
+include_once("get_connect.php");
 
 if (!$_POST['login'] || !$_POST['passwd'] || $_POST['submit'] !== "OK")
 {
@@ -11,8 +11,6 @@ if (!$_POST['login'] || !$_POST['passwd'] || $_POST['submit'] !== "OK")
 else if ($_POST['login'] && $_POST['passwd'] && $_POST['submit'] === "OK")
 {
 	$db = get_connect("private");
-	if (!$db)
-		exit(mysqli_error($db));
 	$passwd = hash('whirlpool', $_POST['passwd']);
 	$admin = ($_POST['admin'] == 'true' ? TRUE : FALSE);
 	$priv_db = mysqli_query($db, 'SELECT * FROM users');
