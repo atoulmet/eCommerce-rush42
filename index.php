@@ -1,5 +1,6 @@
 <?php
-
+include("get_connect.php");
+include("split_func.php");
 if (session_start() === false)
 {
 	echo "Erreur inattendue\n";
@@ -21,7 +22,6 @@ if (session_start() === false)
 		<div class="account">
 			<a href="sign_up.php">Inscription</a>
 			</br>
-
 			<a href="modif_passwd.php">Modifier le mot de passe</a>
 		</div>
 		<div class="categories">
@@ -29,6 +29,25 @@ if (session_start() === false)
 		<div class='hotnow_container'>
 	<h2>Nouveautes</h2>
 		</div>
+			<table>
+				<tr>
+				<?php
+
+					$db = get_connect("ft_amazon");
+					$db_table = mysqli_query($db, 'SELECT * FROM products LIMIT 0, 6');
+					while($data = mysqli_fetch_assoc($db_table))
+					{
+						echo '<td>'.$data['name'].'</br>'.$data['prix'];
+						$cat_table = ft_split($data['categories']);
+						foreach ($cat_table as $catego)
+							echo '</br>'.$catego.'</br>';
+						echo '</td>';
+					}
+					mysqli_free_result($db_table);
+
+				?>
+				</tr>
+			</table>
 		<div class='hotnow'>
 			<!--inserer ici les produits -->
 		</div>
