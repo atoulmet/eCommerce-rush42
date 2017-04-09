@@ -2,17 +2,23 @@
 
 function auth($login, $passwd)
 {
-	$pw_path = "../private/passwd";
-	$pw_serialized = file_get_contents($pw_path);
-	$pw_table = unserialize($pw_serialized);
+	include("get_connect.php");
+
+	$db = get_connect("private");
 	$hashed_pw = hash('whirlpool', $passwd);
-	foreach ($pw_table as $user)
+	$req_pre = mysqli_prepare($db, 'SELECT * FROM users WHERE login = ?');
+	mysqli_stmt_bind_param($req_pre, "s", $login);
+	mysqli_stmt_execute($req_pre);
+	mysqli_stmt_bind_result($req_pre, $user['login'], $user['passwd'], $user['admin']);
+	mysqli_stmt_fetch($req_pre);
+	mysqli_close($db);
+	if ($user['login'] == $login && $user['passwd'] == $hashed_pw)
 	{
-		if ($user['login'] == $login && $user['passwd'] == $hashed_pw) {
-			return (true);
-		}
+		mysqli_free_result($user);
+		return (TRUE);
 	}
-	return (false);
+	mysqli_free_result($user);
+	return (FALSE);
 }
 
 ?>

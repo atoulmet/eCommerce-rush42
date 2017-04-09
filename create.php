@@ -1,7 +1,7 @@
 <?php
 
 header('Location: index.php');
-$private = '../private/passwd';
+include("get_connect.php");
 
 if (!$_POST['login'] || !$_POST['passwd'] || $_POST['submit'] !== "OK")
 {
@@ -10,26 +10,21 @@ if (!$_POST['login'] || !$_POST['passwd'] || $_POST['submit'] !== "OK")
 }
 else if ($_POST['login'] && $_POST['passwd'] && $_POST['submit'] === "OK")
 {
+	$db = get_connect("private");
 	$passwd = hash('whirlpool', $_POST['passwd']);
-	if (file_exists($private))
-	{
-		$priv_file = unserialize(file_get_contents($private));
-		foreach ($priv_file as $user)
-			if ($user['login'] == $_POST['login'])
-			{
-				echo "Un compte avec cet identifiant existe déjà.\n";
-				return ;
-			}
-	}
-	else
-		if (!file_exists('../private'))
-			mkdir('../private');
-	$priv_file[] = ['login' => $_POST['login'], 'passwd' => $passwd, 'admin' => $_POST['admin']];
-	if (file_put_contents($private, serialize($priv_file)) === FALSE)
-	{
-		echo "Erreur inattendue\n";
-		return ;
-	}
+	$admin = ($_POST['admin'] == 'true' ? TRUE : FALSE);
+	$priv_db = mysqli_query($db, 'SELECT * FROM users');
+	while($user = mysqli_fetch_assoc($priv_db))
+		if ($user['login'] == $_POST['login'])
+		{
+			echo "Un compte avec cet identifiant existe déjà.\n";
+			return ;
+		}
+	mysqli_free_result($user);
+	$req_pre = mysqli_prepare($db, 'INSERT INTO users(login, passwd, admin) VALUES(?, ?, ?)');
+	mysqli_stmt_bind_param($req_pre, "ssi", $_POST['login'], $passwd, $admin);
+	mysqli_stmt_execute($req_pre);
+	mysqli_close($db);
 }
 
 ?>

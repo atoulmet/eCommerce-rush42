@@ -2,13 +2,23 @@
 
 function check_admin($login)
 {
-	$pw_path = '../private/passwd';
-	$pw_serialized = file_get_contents($pw_path);
-	$pw_table = unserialize($pw_serialized);
-	foreach ($pw_table as $user)
-		if ($user['login'] == $login && $user['admin'] == "true")
-			return (true);
-	return (false);
+	include("get_connect.php");
+
+	$db = get_connect("private");
+	$hashed_pw = hash('whirlpool', $passwd);
+	$req_pre = mysqli_prepare($db, 'SELECT * FROM users WHERE login = ?');
+	mysqli_stmt_bind_param($req_pre, "s", $login);
+	mysqli_stmt_execute($req_pre);
+	mysqli_stmt_bind_result($req_pre, $user['login'], $user['passwd'], $user['admin']);
+	mysqli_stmt_fetch($req_pre);
+	mysqli_close($db);
+	if ($user['login'] == $login && $user['admin'] == TRUE)
+	{
+		mysqli_free_result($user);
+		return (TRUE);
+	}
+	mysqli_free_result($user);
+	return (FALSE);
 }
 
 ?>

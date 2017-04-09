@@ -5,8 +5,6 @@ if (session_start() === false)
 	echo "Erreur inattendue\n";
 	exit ;
 }
-$pw_folder = "../private";
-$pw_path = "../private/passwd";
 
 ?>
 <!DOCTYPE html>
@@ -37,7 +35,10 @@ $pw_path = "../private/passwd";
 </html>
 <?php
 
+include("get_connect.php");
+
 $i = 0;
+
 if ($_POST['submit'] == 'OK')
 {
 	if ($_POST['login'] === '')
@@ -52,38 +53,35 @@ if ($_POST['submit'] == 'OK')
 	}
 	else
 	{
-		$pw_serialized = file_get_contents($pw_path);
-		$pw_table = unserialize($pw_serialized);
-		foreach ($pw_table as $user)
+		$db = get_connect("private");
+		$req_pre = mysqli_prepare($db, 'SELECT * FROM users WHERE login = ?');
+		mysqli_stmt_bind_param($req_pre, "s", $_POST['login']);
+		mysqli_stmt_execute($req_pre);
+		mysqli_stmt_bind_result($req_pre, $user['login'], $user['passwd'], $user['admin']);
+		mysqli_stmt_fetch($req_pre);
+		$old_pw_hash = hash('whirlpool', $_POST['oldpw']);
+		if ($old_pw_hash == $user['passwd'])
 		{
-			if ($user['login'] == $_POST['login'])
-			{
-				$old_pw_hash = hash('whirlpool', $_POST['oldpw']);
-				if ($old_pw_hash == $user['passwd'])
-				{
-					$new_pw_hash = hash('whirlpool', $_POST['newpw']);
-					$pw_table[$i]['passwd'] = $new_pw_hash;
-					$pw_serialized = serialize($pw_table);
-					file_put_contents($pw_path, $pw_serialized);
-					echo "Modification reussie\n";
-					exit ;
-				}
-				else
-				{
-					echo "Erreur de mot de passe\n";
-					exit ;
-				}
-			}
-			$i++;
+			$new_pw_hash = hash('whirlpool', $_POST['newpw']);
+			$req_pre = mysqli_prepare($db, 'UPDATE users SET passwd = ? WHERE login = ?');
+			mysqli_stmt_bind_param($req_pre, "ss", $new_pw_hash, $_POST['login']);
+			mysqli_stmt_execute($req_pre);
+			mysqli_free_result($user);
+			mysqli_close($db);
+			echo "Modification reussie\n";
+			exit ;
 		}
-				echo "Aucun login correspondant\n";
-				exit ;
+		else
+		{
+			mysqli_free_result($user);
+			mysqli_close($db);
+			echo "Ancien mot de passe erroné\n";
+			exit ;
 		}
 	}
-if ($_POST['submit'] == '') {
-	exit ;
 }
-else {
+else
+{
 	echo "Error\n";
 	exit ;
 }
