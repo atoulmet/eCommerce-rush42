@@ -33,7 +33,7 @@ if (session_start() === false)
 					{
 						echo '<td class="cell">';
 						echo '<img src="'.$data['img'].'"/></br>';
-						echo "<h3>".$data['name'].'</h3></br></br>'."Prix ".$data['prix']." €</br></br>";
+						echo "<h3>".$data['name'].'</h3></br></br>'."Prix ".$data['prix']." Wallets</br></br>";
 						echo '</td>';
 					}
 					mysqli_free_result($db_table);

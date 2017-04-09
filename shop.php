@@ -43,7 +43,7 @@ if (session_start() === false)
 
 						  			<span class="prod_name"><h3>'.$user['name'].'</h3></span></br>
 
-									<span class="prod_price">Prix '.$user['prix'].'</span>
+									<span class="prod_price">Prix '.$user['prix'].' Wallets</span>
 
 									<form class="add_panier" action="panier.php" method="post">
 										<button type="submit" name="add_panier" id="add_panier_but" value="'.$user['id'].'">Ajouter au panier</button>
