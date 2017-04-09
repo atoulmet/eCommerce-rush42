@@ -21,4 +21,29 @@
 	echo '<a href="panier.php" >Accéder au panier</a><br />';
 
 	?>
+
+	<ul id="menus">
+		<?php
+
+			include_once("get_connect.php");
+
+			$cat = array();
+			$db = get_connect("ft_amazon");
+			$db_cat = mysqli_query($db, 'SELECT categories FROM products');
+			while($ret = mysqli_fetch_assoc($db_cat))
+			{
+				$tmp = explode(";", $ret['categories']);
+				$cat = array_merge($cat, $tmp);
+			}
+			$cat = array_unique($cat);
+			sort($cat);
+			mysqli_free_result($db_cat);
+			if (!mysqli_close($db))
+				exit(mysqli_error($db));
+			foreach ($cat as $elem)
+			{
+				echo '<li><a href="shop.php?categorie='.$elem.'">'.$elem.'</a></li>';
+			}
+		?>
+	</ul>
 </header>

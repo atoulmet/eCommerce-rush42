@@ -42,7 +42,7 @@ if (!mysqli_close($db))
 $db = get_connect("ft_amazon");
 if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("Coton", "10", "Bocal;BDE;Student")'))
 	  echo "Coton ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("Charly", "10", "ADM")'))
+if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("Charly", "10", "ADM;Student")'))
 	  echo "Charly ajoute<br />";
 if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("Antonin", "10", "Student")'))
 	  echo "Antonin ajoute<br />";

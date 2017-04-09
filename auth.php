@@ -10,7 +10,8 @@ function auth($login, $passwd)
 	mysqli_stmt_execute($req_pre);
 	mysqli_stmt_bind_result($req_pre, $user['login'], $user['passwd'], $user['admin']);
 	mysqli_stmt_fetch($req_pre);
-	mysqli_close($db);
+	if (!mysqli_close($db))
+		exit(mysqli_error($db));
 	if ($user['login'] === $login && $user['passwd'] === $hashed_pw)
 		return (TRUE);
 	return (FALSE);
