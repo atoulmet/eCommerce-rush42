@@ -20,7 +20,7 @@ if (session_start() === false)
 
 			include_once("header.php");
 			echo '<h2>'.$_GET['categorie'].'</h2>';
-			
+
 		?>
 
 		<div class="table">
@@ -44,6 +44,10 @@ if (session_start() === false)
 						  			<span class="prod_name"><h3>'.$user['name'].'</h3></span></br>
 
 									<span class="prod_price">Prix '.$user['prix'].'</span>
+
+									<form class="add_panier" action="panier.php" method="post">
+										<button type="submit" name="add_panier" id="add_panier_but" value="'.$user['id'].'">Ajouter au panier</button>
+									</form>
 						  		</div>';
 					}
 					mysqli_stmt_close($req_pre);
