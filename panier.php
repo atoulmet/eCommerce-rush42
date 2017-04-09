@@ -1,5 +1,6 @@
 <?php
 
+header('Location: index.php');
 if (session_start() === false)
 {
 	echo "Erreur inattendue\n";
@@ -19,4 +20,5 @@ if ($_POST['add_panier'])
 		$_SESSION['panier'] = array_merge($_SESSION['panier'], $tmp);
 	}
 }
+
 ?>
