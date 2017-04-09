@@ -13,11 +13,7 @@ function check_admin($login)
 	mysqli_stmt_fetch($req_pre);
 	mysqli_close($db);
 	if ($user['login'] == $login && $user['admin'] == TRUE)
-	{
-		mysqli_free_result($user);
 		return (TRUE);
-	}
-	mysqli_free_result($user);
 	return (FALSE);
 }
 

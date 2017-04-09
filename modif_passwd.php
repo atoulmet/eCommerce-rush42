@@ -66,14 +66,12 @@ if ($_POST['submit'] == 'OK')
 			$req_pre = mysqli_prepare($db, 'UPDATE users SET passwd = ? WHERE login = ?');
 			mysqli_stmt_bind_param($req_pre, "ss", $new_pw_hash, $_POST['login']);
 			mysqli_stmt_execute($req_pre);
-			mysqli_free_result($user);
 			mysqli_close($db);
 			echo "Modification reussie\n";
 			exit ;
 		}
 		else
 		{
-			mysqli_free_result($user);
 			mysqli_close($db);
 			echo "Ancien mot de passe erroné\n";
 			exit ;

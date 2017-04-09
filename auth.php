@@ -13,11 +13,7 @@ function auth($login, $passwd)
 	mysqli_stmt_fetch($req_pre);
 	mysqli_close($db);
 	if ($user['login'] == $login && $user['passwd'] == $hashed_pw)
-	{
-		mysqli_free_result($user);
 		return (TRUE);
-	}
-	mysqli_free_result($user);
 	return (FALSE);
 }
 
