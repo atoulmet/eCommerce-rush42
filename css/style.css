@@ -1,3 +1,12 @@
+* {
+    padding: 0px;
+}
+
+body {
+/*    background-image: url(http://i.imgur.com/4s01o2C.png);*/
+    font-family: sans-serif;
+}
+
 h1 {
 	text-align: center;
 }
@@ -31,4 +40,31 @@ footer {
 .cell img {
 	width: 50% ;
 	height: 50% ;
+}
+
+#menus {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#menus > li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    height: 30px;
+    background-color: #277EB6;
+}
+
+#menus a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+#menus > li:hover {
+    background: #777;
 }
