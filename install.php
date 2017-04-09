@@ -40,17 +40,17 @@ if (!mysqli_close($db))
 
 //									INSERT PRODUCTS
 $db = get_connect("ft_amazon");
-if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("Coton", "10", "Bocal;BDE;Student")'))
+if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("coton", "10", "Bocal;BDE;Student")'))
 	  echo "Coton ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("Charly", "10", "ADM")'))
+if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("charly", "10", "ADM")'))
 	  echo "Charly ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("Antonin", "10", "Student")'))
+if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("aridolfi", "10", "Student")'))
 	  echo "Antonin ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("Alexia", "10", "Student;BDE")'))
+if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("atoulmet", "10", "Student;BDE")'))
 	  echo "Alexia ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("Thor", "10", "Bocal")'))
+if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("thor", "10", "Bocal")'))
 	  echo "Thor ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("Varchar", "10", "Pixel;Student")'))
+if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("varichar", "10", "Pixel;Student")'))
 	  echo "Varchar ajoute<br />";
 else
 	exit(mysqli_error($db));

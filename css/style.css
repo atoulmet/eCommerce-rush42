@@ -15,7 +15,21 @@ footer {
 	margin-top: 15%;
 }
 
-td {
-	margin: 15%;
+.cell {
+	margin: 30px;
+	border: solid 1px;
+	text-align: center;
+	padding: 20px;
 
+}
+
+.table {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.cell img {
+	width: 50% ;
+	height: 50% ;
 }
