@@ -44,6 +44,6 @@ else
 	    exit(mysqli_error($db)) ;
 $db = get_connect("ft_amazon");
 if (!$db)
-	    exit(mysqli_error($db));
+	exit(mysqli_error($db));
 mysqli_query($db, 'INSERT INTO products(id, name, prix, categories) VALUES("", "coton", "10", "Bocal")');
 ?>
