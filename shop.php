@@ -31,11 +31,13 @@ if (session_start() === false)
 					$req_pre = mysqli_prepare($db, 'SELECT * FROM products WHERE categories LIKE ?');
 					mysqli_stmt_bind_param($req_pre, "s", $categorie);
 					mysqli_stmt_execute($req_pre);
-					mysqli_stmt_bind_result($req_pre, $user['id'], $user['name'], $user['prix'], $user['categories']);
+					mysqli_stmt_bind_result($req_pre, $user['id'], $user['name'], $user['img'], $user['prix'], $user['categories']);
 					while(mysqli_stmt_fetch($req_pre))
 					{
 					      echo '<td class="cell_prod">
 						  			<span class="prod_name">'.$user['name'].'</span>
+
+									<img src="'.$user['img'].'" alt="product_picture" />
 
 									<span class="prod_price">'.$user['prix'].'</span>
 						  		</td>';
