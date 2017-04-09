@@ -1,57 +1,36 @@
-<?PHP
-if (session_start() === false)
-{
-	echo "Erreur inattendue\n";
-	exit ;
-}
-?>
-<!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<meta charset="utf-8">
-		<title>Suppression compte</title>
-	</head>
-	<body>
-		<p>Suppression du compte</p>
-		<form action="delete.php" method="post">
-			<label for="login">Identifiant : </label>
-
-			 <input type="text" name="login" id="login" placeholder="login" value="" />
-			<br />
-
-			<label for="passwd">Mot de passe : </label>
-			<input type="password" name="passwd" id="passwd" placeholder="password" value="" />
-
-			<input type="submit" name="suppr" value="suppr" />
-			<br />
-		</form>
-		<br />
-		<a href="./index.php">Retourner à l'accueil</a>
-	</body>
-</html>
 <?php
-include("get_connect.php");
-if (!$_POST['login'] || !$_POST['passwd'] || $_POST['suppr'] !== "suppr")
+
+header('Location: index.php');
+include_once("get_connect.php");
+
+if (!$_POST['login'] || !$_POST['passwd'] || $_POST['submit'] !== "SUPPRIMER")
 {
-	echo "Vous devez remplir les champs.\n";
+	echo "Vous devez remplir le formulaire.\n";
 	return ;
 }
-else if ($_POST['login'] && $_POST['passwd'] && $_POST['suppr'] === "suppr")
+else if ($_POST['login'] && $_POST['passwd'] && $_POST['submit'] === "SUPPRIMER")
 {
 	$db = get_connect("private");
-	if (!$db)
-		exit(mysqli_error($db));
+	if (($req_pre = mysqli_prepare($db, 'SELECT * FROM users WHERE login = ?')) === FALSE)
+	{
+		mysqli_close($db);
+		exit (mysqli_error($db));
+	}
+	mysqli_stmt_bind_param($req_pre, "s", $_POST['login']);
+	mysqli_stmt_execute($req_pre);
+	mysqli_stmt_bind_result($req_pre, $user['login'], $user['passwd'], $user['admin']);
+	mysqli_stmt_fetch($req_pre);
 	$passwd = hash('whirlpool', $_POST['passwd']);
-	$priv_db = mysqli_query($db, 'SELECT * FROM users');
-	while($user = mysqli_fetch_assoc($priv_db))
-		if (auth($_POST['login'], $_POST['passwd']) == true)
-		{
-			mysqli_query($db, 'DELETE FROM users(login, passwd, admin) VALUES(?, ?, ?)');    
-			echo "Compte supprime.\n";
-			return ;
-		}
-	mysqli_free_result($user);
+	if ($passwd !== $user['passwd'])
+	{
+		mysqli_close($db);
+		echo "Identifiants erronés\n";
+		exit ;
+	}
+	$req_pre = mysqli_prepare($db, 'DELETE FROM jeux_video WHERE login = ?');
+	mysqli_stmt_bind_param($req_pre, "s", $_POST['login']);
 	mysqli_stmt_execute($req_pre);
 	mysqli_close($db);
 }
+
 ?>
