@@ -1,6 +1,5 @@
 <?php
 include("get_connect.php");
-include("split_func.php");
 if (session_start() === false)
 {
 	echo "Erreur inattendue\n";
@@ -35,9 +34,6 @@ if (session_start() === false)
 						echo '<td class="cell">';
 						echo '<img src="'.$data['img'].'"/></br>';
 						echo "<h3>".$data['name'].'</h3></br></br>'."Prix ".$data['prix']." €</br></br>";
-						$cat_table = ft_split($data['categories']);
-						foreach ($cat_table as $catego)
-							echo $catego.'</br>';
 						echo '</td>';
 					}
 					mysqli_free_result($db_table);

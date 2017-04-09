@@ -16,11 +16,14 @@ if (session_start() === false)
 	</head>
 
 	<body>
-		<?php include_once("header.php"); ?>
+		<?php
+
+			include_once("header.php");
+			echo '<h2>'.$_GET['categorie'].'</h2>';
+			
+		?>
 
 		<div class="table">
-			<table>
-				<tr>
 					<?php
 
 					include_once("get_connect.php");
@@ -34,22 +37,20 @@ if (session_start() === false)
 					mysqli_stmt_bind_result($req_pre, $user['id'], $user['name'], $user['img'], $user['prix'], $user['categories']);
 					while(mysqli_stmt_fetch($req_pre))
 					{
-					      echo '<td class="cell">
+					      echo '<div class="cell">
 
 									<img src="'.$user['img'].'" alt="product_picture" /></br>
 
 						  			<span class="prod_name"><h3>'.$user['name'].'</h3></span></br>
 
 									<span class="prod_price">Prix '.$user['prix'].'</span>
-						  		</td>';
+						  		</div>';
 					}
 					mysqli_stmt_close($req_pre);
 					if (!mysqli_close($db))
 						exit(mysqli_error($db));
 
 					?>
-				</tr>
-			</table>
 		</div>
 	</div>
 

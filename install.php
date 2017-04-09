@@ -47,11 +47,23 @@ if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES(
 if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("aridolfi", "https://cdn.intra.42.fr/users/medium_aridolfi.jpg", "10", "All;Student")'))
 	  echo "Antonin ajoute<br />";
 if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("atoulmet", "https://cdn.intra.42.fr/users/medium_atoulmet.jpg", "10", "All;Student;BDE")'))
-	  echo "Alexia ajoute<br />";
+	  echo "Alexia ajoutee<br />";
 if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("thor", "https://cdn.intra.42.fr/users/medium_thor.jpg", "10", "All;Bocal")'))
 	  echo "Thor ajoute<br />";
 if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("varichar", "https://cdn.intra.42.fr/users/medium_varichar.jpg", "10", "All;Pixel;Student;BDE")'))
 	  echo "Varchar ajoute<br />";
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("mleclair", "https://cdn.intra.42.fr/users/medium_mleclair.jpg", "10", "All;Student")'))
+	  echo "mleclair ajoute<br />";
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("nmougino", "https://cdn.intra.42.fr/users/medium_nmougino.jpg", "10", "All;Student;Tuteur")'))
+	  echo "nmougino ajoute<br />";
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("tgauvrit", "https://cdn.intra.42.fr/users/medium_tgauvrit.jpg", "10", "All;Student")'))
+	  echo "tgauvrit ajoute<br />";
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("bfrochot", "https://cdn.intra.42.fr/users/medium_bfrochot.jpg", "10", "All;Student")'))
+	  echo "bfrochot ajoute<br />";
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("edeveze", "https://cdn.intra.42.fr/users/medium_edeveze.jpg", "10", "All;Student;Tuteur")'))
+	  echo "edeveze ajoutee<br />";
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("30_1", "https://cdn.intra.42.fr/users/medium_30_1.jpg", "10", "All;Pixel")'))
+	  echo "30_1 ajoute<br />";
 else
 	exit(mysqli_error($db));
 if (!mysqli_close($db))

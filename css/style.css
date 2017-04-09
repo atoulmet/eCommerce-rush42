@@ -25,21 +25,25 @@ footer {
 }
 
 .cell {
-	margin: 30px;
+	margin: 6px;
 	border: solid 1px;
 	text-align: center;
-	padding-top: 3%;
+	padding: 1%;
+	flex-shrink: 0;
 }
 
 .table {
 	display: flex;
+    flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 }
 
 .cell img {
-	width: 50% ;
-	height: 50% ;
+	margin-left: 30px;
+	margin-right: 30px;
+	width: 131px ;
+	height: 175px ;
 }
 
 #menus {
