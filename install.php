@@ -38,6 +38,15 @@ else
 if (!mysqli_close($db))
 			exit(mysqli_error($db));
 
+//								CREATE TABLE ORDERS
+$db = get_connect("ft_amazon");
+if (mysqli_query($db, 'CREATE TABLE IF NOT EXISTS orders (name VARCHAR(255) NOT NULL, numbers TEXT(1096), prix INT UNSIGNED NOT NULL)'))
+	    echo "Table créée ou existante<br />";
+else
+	    echo mysqli_error($db);
+if (!mysqli_close($db))
+			exit(mysqli_error($db));
+
 //									INSERT PRODUCTS
 $db = get_connect("ft_amazon");
 if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("coton", "https://cdn.intra.42.fr/users/medium_coton.jpg" , "10", "All;Bocal;BDE;Student")'))

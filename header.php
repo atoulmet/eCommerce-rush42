@@ -29,7 +29,7 @@ if (session_start() === false)
 	}
 
 	?>
-	<a href="panier.php" >Accéder au panier</a><br />
+	<a href="show_panier.php" >Accéder au panier</a><br />
 
 	<div class="panier_statut">
 		<p><?php echo "Articles dans le panier : ".count($_SESSION['panier']); ?></p>
