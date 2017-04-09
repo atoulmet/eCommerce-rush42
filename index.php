@@ -24,7 +24,14 @@ if (session_start() === false)
 
 			<a href="modif_passwd.php">Modifier le mot de passe</a>
 		</div>
-
+		<div class="categories">
+		</div>
+		<div class='hotnow_container'>
+	<h2>Nouveautes</h2>
+		</div>
+		<div class='hotnow'>
+			<!--inserer ici les produits -->
+		</div>
 		<?php include_once("footer.php"); ?>
 	</body>
 </html>
