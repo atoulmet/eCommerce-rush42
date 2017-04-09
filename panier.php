@@ -8,8 +8,15 @@ if (session_start() === false)
 if ($_POST['add_panier'])
 {
 	if (!isset($_SESSION['panier']))
-		$_SESSION['panier'] = array_merge(array(), $_POST['add_panier']);
+	{
+		$tmp[] = $_POST['add_panier'];
+		$_SESSION['panier'] = array();
+		$_SESSION['panier'] = array_merge($_SESSION['panier'], $tmp);
+	}
 	else
-		$_SESSION['panier'] = array_merge($_SESSION['panier'], $_POST['add_panier']);
+	{
+		$tmp[] = $_POST['add_panier'];
+		$_SESSION['panier'] = array_merge($_SESSION['panier'], $tmp);
+	}
 }
 ?>
