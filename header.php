@@ -1,3 +1,12 @@
+<?php
+
+if (session_start() === false)
+{
+	echo "Erreur inattendue\n";
+	exit ;
+}
+
+?>
 <header>
 	<a href="index.php"><h1>Bienvenue sur la boutique 42</h1></a>
 
@@ -18,9 +27,13 @@
 		echo '<a href="login.php">Se connecter</a><br />';
 		echo '<a id="sign_up" href="sign_up.php">Inscription</a></br>';
 	}
-	echo '<a href="panier.php" >Accéder au panier</a><br />';
 
 	?>
+	<a href="panier.php" >Accéder au panier</a><br />
+
+	<div class="panier_statut">
+		<p><?php echo "Articles dans le panier : ".count($_SESSION['panier']); ?></p>
+	</div>
 
 	<ul id="menus">
 		<?php
