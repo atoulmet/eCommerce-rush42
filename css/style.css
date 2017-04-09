@@ -4,10 +4,13 @@ h1 {
 
 .account {
 	text-align: right;
-
 }
 
 .status {
 	text-align: center;
+}
 
+footer {
+	text-align: center;
+	margin-top: 15%;
 }
