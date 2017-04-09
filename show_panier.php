@@ -11,12 +11,11 @@
 
                     include_once("header.php");
 
-					                ?>
+				?>
 
-            <div class="cell">
-
+            <div class="cart_cell">
+				<img src="http://fla.fg-a.com/shopping-cart/shopping-cart-black-1.png">
                 </div>
-                    </div>
 
         <?php include_once("footer.php"); ?>
     </body>
