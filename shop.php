@@ -29,7 +29,7 @@ if (session_start() === false)
 					$categorie = '%'.$_GET['categorie'].'%';
 					$db = get_connect("ft_amazon");
 					$req_pre = mysqli_prepare($db, 'SELECT * FROM products WHERE categories LIKE ?');
-					mysqli_stmt_bind_param($req_pre, "s", );
+					mysqli_stmt_bind_param($req_pre, "s", $categorie);
 					mysqli_stmt_execute($req_pre);
 					mysqli_stmt_bind_result($req_pre, $user['id'], $user['name'], $user['prix'], $user['categories']);
 					while(mysqli_stmt_fetch($req_pre))
