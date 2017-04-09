@@ -56,29 +56,36 @@ if ($_POST['submit'] == 'OK')
 		$db = get_connect("private");
 		if (!$db)
 			exit(mysqli_error($db));
-		$req_pre = mysqli_prepare($db, 'SELECT * FROM users WHERE login = ?');
+		if (($req_pre = mysqli_prepare($db, 'SELECT * FROM users WHERE login = ?')) === FALSE)
+		{
+			mysqli_close($db);
+			exit (mysqli_error($db));
+		}
 		mysqli_stmt_bind_param($req_pre, "s", $_POST['login']);
 		mysqli_stmt_execute($req_pre);
 		mysqli_stmt_bind_result($req_pre, $user['login'], $user['passwd'], $user['admin']);
 		mysqli_stmt_fetch($req_pre);
 		$old_pw_hash = hash('whirlpool', $_POST['oldpw']);
-		if ($old_pw_hash == $user['passwd'])
-		{
-			$new_pw_hash = hash('whirlpool', $_POST['newpw']);
-			$req_updt = mysqli_prepare($db, 'UPDATE users SET passwd = ? WHERE login = ?');
-			mysqli_stmt_bind_param($req_updt, "ss", $new_pw_hash, $_POST['login']);
-			mysqli_stmt_execute($req_updt);
-			echo mysqli_error($db);
-			mysqli_close($db);
-			echo "Modification reussie\n";
-			exit ;
-		}
-		else
+		if ($old_pw_hash !== $user['passwd'])
 		{
 			mysqli_close($db);
 			echo "Ancien mot de passe erroné\n";
 			exit ;
 		}
+		mysqli_close($db);
+		$db = get_connect("private");
+		if (!$db)
+			exit(mysqli_error($db));
+		$new_pw_hash = hash('whirlpool', $_POST['newpw']);
+		if (($req_updt = mysqli_prepare($db, 'UPDATE users SET passwd = ? WHERE login = ?')) === FALSE)
+		{
+			mysqli_close($db);
+			exit (mysqli_error($db));
+		}
+		mysqli_stmt_bind_param($req_updt, "ss", $new_pw_hash, $_POST['login']);
+		mysqli_stmt_execute($req_updt);
+		mysqli_close($db);
+		echo "Modification reussie\n";
 	}
 }
 ?>
