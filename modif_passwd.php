@@ -54,6 +54,8 @@ if ($_POST['submit'] == 'OK')
 	else
 	{
 		$db = get_connect("private");
+		if (!$db)
+			echo mysqli_error($db);
 		$req_pre = mysqli_prepare($db, 'SELECT * FROM users WHERE login = ?');
 		mysqli_stmt_bind_param($req_pre, "s", $_POST['login']);
 		mysqli_stmt_execute($req_pre);
@@ -64,8 +66,14 @@ if ($_POST['submit'] == 'OK')
 		{
 			$new_pw_hash = hash('whirlpool', $_POST['newpw']);
 			$req_pre = mysqli_prepare($db, 'UPDATE users SET passwd = ? WHERE login = ?');
-			mysqli_stmt_bind_param($req_pre, "ss", $new_pw_hash, $_POST['login']);
-			mysqli_stmt_execute($req_pre);
+			if (!mysqli_stmt_bind_param($req_pre, "ss", $new_pw_hash, $_POST['login']))
+			{
+				echo mysqli_error($db);
+			}
+			if (!mysqli_stmt_execute($req_pre))
+			{
+				echo mysqli_error($db);
+			}
 			echo mysqli_error($db);
 			mysqli_close($db);
 			echo "Modification reussie\n";
