@@ -15,7 +15,7 @@ if (session_start() === false)
 	if ($_SESSION['loggued_on_user'])
 		{
 		if ($_SESSION['admin'] === 'true')
-			echo '<div class ="status" >Mighty administrator\n</div>';
+			echo '<div class ="status" >Mighty administrator</div>';
 		echo '<p>'."Bonjour ".$_SESSION['loggued_on_user'].'<br />'.'</p>';
 		echo '<div class="account" >
 				<a href="settings.php">Options</a><br />
