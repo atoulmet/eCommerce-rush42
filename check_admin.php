@@ -2,8 +2,6 @@
 
 function check_admin($login)
 {
-	include("get_connect.php");
-
 	$db = get_connect("private");
 	$hashed_pw = hash('whirlpool', $passwd);
 	$req_pre = mysqli_prepare($db, 'SELECT * FROM users WHERE login = ?');

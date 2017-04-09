@@ -5,7 +5,6 @@ if (session_start() === false)
 	echo "Erreur inattendue\n";
 	exit ;
 }
-$pw_path = "../private/passwd";
 
 ?>
 
@@ -31,13 +30,14 @@ $pw_path = "../private/passwd";
             <input type="submit" name="submit" value="OK" />
         </form>
         <br />
-		
+
         <a href="./index.php">Retourner à l'accueil</a>
     </body>
 </html>
 
 <?php
 
+include("get_connect.php");
 include("auth.php");
 include("check_admin.php");
 
