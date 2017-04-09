@@ -66,6 +66,8 @@ if ($_POST['submit'] == 'OK')
 		{
 			$new_pw_hash = hash('whirlpool', $_POST['newpw']);
 			$req_updt = mysqli_prepare($db, 'UPDATE users SET passwd = ? WHERE login = ?');
+			echo mysqli_error($db);
+			var_dump($req_updt);
 			mysqli_stmt_bind_param($req_updt, "ss", $new_pw_hash, $_POST['login']);
 			mysqli_stmt_execute($req_updt);
 			echo mysqli_error($db);
