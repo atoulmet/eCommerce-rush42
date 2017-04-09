@@ -33,7 +33,7 @@ if (session_start() === false)
 					while($data = mysqli_fetch_assoc($db_table))
 					{
 						echo '<td class="cell">';
-						echo '<img class="photo" src=https://cdn.intra.42.fr/users/medium_'.$data['name'].".jpg /></br>";
+						echo '<img class="photo" src="'.$data['img'].'"/></br>';
 						echo "<h3>".$data['name'].'</h3></br></br>'."Prix ".$data['prix']." €</br></br>";
 						$cat_table = ft_split($data['categories']);
 						foreach ($cat_table as $catego)

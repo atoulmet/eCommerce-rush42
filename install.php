@@ -31,7 +31,7 @@ if (!mysqli_close($db))
 
 //								CREATE TABLE PRODUCTS
 $db = get_connect("ft_amazon");
-if (mysqli_query($db, 'CREATE TABLE IF NOT EXISTS products (ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, prix INT UNSIGNED NOT NULL, categories TEXT(1096) NOT NULL)'))
+if (mysqli_query($db, 'CREATE TABLE IF NOT EXISTS products (ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, img TEXT(1096), prix INT UNSIGNED NOT NULL, categories TEXT(1096) NOT NULL)'))
 	    echo "Table créée ou existante<br />";
 else
 	    echo mysqli_error($db);
@@ -40,17 +40,17 @@ if (!mysqli_close($db))
 
 //									INSERT PRODUCTS
 $db = get_connect("ft_amazon");
-if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("coton", "10", "Bocal;BDE;Student")'))
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("coton", "https://cdn.intra.42.fr/users/medium_coton.jpg" , "10", "Bocal;BDE;Student")'))
 	  echo "Coton ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("charly", "10", "ADM")'))
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("charly", "https://cdn.intra.42.fr/users/medium_charly.jpg", "10", "ADM")'))
 	  echo "Charly ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("aridolfi", "10", "Student")'))
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("aridolfi", "https://cdn.intra.42.fr/users/medium_aridolfi.jpg", "10", "Student")'))
 	  echo "Antonin ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("atoulmet", "10", "Student;BDE")'))
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("atoulmet", "https://cdn.intra.42.fr/users/medium_atoulmet.jpg", "10", "Student;BDE")'))
 	  echo "Alexia ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("thor", "10", "Bocal")'))
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("thor", "https://cdn.intra.42.fr/users/medium_thor.jpg" "10", "Bocal")'))
 	  echo "Thor ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, prix, categories) VALUES("varichar", "10", "Pixel;Student")'))
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("varichar", "https://cdn.intra.42.fr/users/medium_varichar.jpg", "10", "Pixel;Student;BDE")'))
 	  echo "Varchar ajoute<br />";
 else
 	exit(mysqli_error($db));
