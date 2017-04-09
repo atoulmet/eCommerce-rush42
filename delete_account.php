@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<p>Entrez vos identifiants pour supprimer votre compte :</p>
-		<form action="create.php" method="post">
+		<form action="delete.php" method="post">
 			<label for="login">Identifiant : </label>
 
 			 <input type="text" name="login" id="login" placeholder="login" value="" />

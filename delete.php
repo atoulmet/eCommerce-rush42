@@ -1,6 +1,5 @@
 <?php
 
-header('Location: index.php');
 include_once("get_connect.php");
 
 if (!$_POST['login'] || !$_POST['passwd'] || $_POST['submit'] !== "SUPPRIMER")
@@ -27,10 +26,13 @@ else if ($_POST['login'] && $_POST['passwd'] && $_POST['submit'] === "SUPPRIMER"
 		echo "Identifiants erronés\n";
 		exit ;
 	}
-	$req_pre = mysqli_prepare($db, 'DELETE FROM jeux_video WHERE login = ?');
+	mysqli_close($db);
+	$db = get_connect("private");
+	$req_pre = mysqli_prepare($db, 'DELETE FROM users WHERE login = ?');
 	mysqli_stmt_bind_param($req_pre, "s", $_POST['login']);
 	mysqli_stmt_execute($req_pre);
 	mysqli_close($db);
+	include("logout.php");
 }
 
 ?>
