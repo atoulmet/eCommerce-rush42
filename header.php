@@ -1,5 +1,5 @@
 <header>
-	<h1>Bienvenue sur la boutique 42</h1>
+	<a href="index.php"><h1>Bienvenue sur la boutique 42</h1></a>
 
 	<?php
 

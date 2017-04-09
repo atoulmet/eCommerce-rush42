@@ -18,7 +18,7 @@ if (session_start() === false)
 	<body>
 		<?php include_once("header.php"); ?>
 
-		<div class="products">
+		<div class="table">
 			<table>
 				<tr>
 					<?php
@@ -34,12 +34,13 @@ if (session_start() === false)
 					mysqli_stmt_bind_result($req_pre, $user['id'], $user['name'], $user['img'], $user['prix'], $user['categories']);
 					while(mysqli_stmt_fetch($req_pre))
 					{
-					      echo '<td class="cell_prod">
-						  			<span class="prod_name">'.$user['name'].'</span>
+					      echo '<td class="cell">
 
-									<img src="'.$user['img'].'" alt="product_picture" />
+									<img src="'.$user['img'].'" alt="product_picture" /></br>
 
-									<span class="prod_price">'.$user['prix'].'</span>
+						  			<span class="prod_name"><h3>'.$user['name'].'</h3></span></br>
+
+									<span class="prod_price">Prix '.$user['prix'].'</span>
 						  		</td>';
 					}
 					mysqli_stmt_close($req_pre);
@@ -50,6 +51,7 @@ if (session_start() === false)
 				</tr>
 			</table>
 		</div>
+	</div>
 
 		<?php include_once("footer.php"); ?>
 	</body>

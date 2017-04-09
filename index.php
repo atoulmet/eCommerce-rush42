@@ -29,11 +29,11 @@ if (session_start() === false)
 				<?php
 
 					$db = get_connect("ft_amazon");
-					$db_table = mysqli_query($db, 'SELECT * FROM products LIMIT 0, 6');
+					$db_table = mysqli_query($db, 'SELECT * FROM products LIMIT 0, 4');
 					while($data = mysqli_fetch_assoc($db_table))
 					{
 						echo '<td class="cell">';
-						echo '<img class="photo" src="'.$data['img'].'"/></br>';
+						echo '<img src="'.$data['img'].'"/></br>';
 						echo "<h3>".$data['name'].'</h3></br></br>'."Prix ".$data['prix']." €</br></br>";
 						$cat_table = ft_split($data['categories']);
 						foreach ($cat_table as $catego)

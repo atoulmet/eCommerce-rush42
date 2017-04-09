@@ -40,17 +40,17 @@ if (!mysqli_close($db))
 
 //									INSERT PRODUCTS
 $db = get_connect("ft_amazon");
-if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("coton", "https://cdn.intra.42.fr/users/medium_coton.jpg" , "10", "Bocal;BDE;Student")'))
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("coton", "https://cdn.intra.42.fr/users/medium_coton.jpg" , "10", "All;Bocal;BDE;Student")'))
 	  echo "Coton ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("charly", "https://cdn.intra.42.fr/users/medium_charly.jpg", "10", "ADM")'))
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("charly", "https://cdn.intra.42.fr/users/medium_charly.jpg", "10", "All;ADM")'))
 	  echo "Charly ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("aridolfi", "https://cdn.intra.42.fr/users/medium_aridolfi.jpg", "10", "Student")'))
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("aridolfi", "https://cdn.intra.42.fr/users/medium_aridolfi.jpg", "10", "All;Student")'))
 	  echo "Antonin ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("atoulmet", "https://cdn.intra.42.fr/users/medium_atoulmet.jpg", "10", "Student;BDE")'))
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("atoulmet", "https://cdn.intra.42.fr/users/medium_atoulmet.jpg", "10", "All;Student;BDE")'))
 	  echo "Alexia ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("thor", "https://cdn.intra.42.fr/users/medium_thor.jpg" "10", "Bocal")'))
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("thor", "https://cdn.intra.42.fr/users/medium_thor.jpg", "10", "All;Bocal")'))
 	  echo "Thor ajoute<br />";
-if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("varichar", "https://cdn.intra.42.fr/users/medium_varichar.jpg", "10", "Pixel;Student;BDE")'))
+if (mysqli_query($db, 'INSERT INTO products(name, img, prix, categories) VALUES("varichar", "https://cdn.intra.42.fr/users/medium_varichar.jpg", "10", "All;Pixel;Student;BDE")'))
 	  echo "Varchar ajoute<br />";
 else
 	exit(mysqli_error($db));
