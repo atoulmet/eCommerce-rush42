@@ -25,16 +25,19 @@ if (session_start() === false)
 		<div class="table">
 			<table>
 				<tr>
-				<?php
+<?php
 
-					$db = get_connect("ft_amazon");
-					$db_table = mysqli_query($db, 'SELECT * FROM products LIMIT 0, 4');
-					while($data = mysqli_fetch_assoc($db_table))
-					{
-						echo '<td class="cell">';
-						echo '<img src="'.$data['img'].'"/></br>';
-						echo "<h3>".$data['name'].'</h3></br></br>'."Prix ".$data['prix']." Wallets</br></br>";
-						echo '</td>';
+$db = get_connect("ft_amazon");
+$db_table = mysqli_query($db, 'SELECT * FROM products LIMIT 0, 4');
+while($data = mysqli_fetch_assoc($db_table))
+{
+	echo '<td class="cell">';
+	echo '<img src="'.$data['img'].'"/></br>';
+	echo "<h3>".$data['name'].'</h3></br></br>'."Prix ".$data['prix']." Wallets</br></br>";
+	echo '<form class="add_panier" action="panier.php" method="post">
+		<button type="submit" name="add_panier" id="add_panier_but" value="'.$user['id'].'">Ajouter au panier</button>
+		</form>';
+	echo '</td>';
 					}
 					mysqli_free_result($db_table);
 
