@@ -21,9 +21,9 @@ if (session_start() === false)
 
 		<div class="categories">
 		</div>
-		<div class='hotnow_container'>
 	<h2>Nouveautes</h2>
 		</div>
+		<div class="table">
 			<table>
 				<tr>
 				<?php
@@ -32,10 +32,12 @@ if (session_start() === false)
 					$db_table = mysqli_query($db, 'SELECT * FROM products LIMIT 0, 6');
 					while($data = mysqli_fetch_assoc($db_table))
 					{
-						echo '<td>'.$data['name'].'</br>'.$data['prix'];
+						echo '<td class="cell">';
+						echo '<img class="photo" src=https://cdn.intra.42.fr/users/medium_'.$data['name'].".jpg /></br>";
+						echo "<h3>".$data['name'].'</h3></br></br>'."Prix ".$data['prix']." €</br></br>";
 						$cat_table = ft_split($data['categories']);
 						foreach ($cat_table as $catego)
-							echo '</br>'.$catego.'</br>';
+							echo $catego.'</br>';
 						echo '</td>';
 					}
 					mysqli_free_result($db_table);
@@ -43,9 +45,9 @@ if (session_start() === false)
 				?>
 				</tr>
 			</table>
+		</div>
 		<div class='hotnow'>
 			<!--inserer ici les produits -->
-		</div>
 		<?php include_once("footer.php"); ?>
 	</body>
 </html>
